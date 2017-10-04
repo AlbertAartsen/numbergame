@@ -1,5 +1,7 @@
+repeat = 1
+
 def make_question
-  @question = rand(1..100)
+  @question = rand(1..3)
 end
 
 def answer_prompt
@@ -8,22 +10,28 @@ def answer_prompt
 end
 
 def response
-  if @answer1 > @question
+    answer_prompt
+  if @answer1 < @question
     puts "higher"
-  elsif @answer1 < @question
+    return false
+  elsif @answer1 > @question
     puts"lower"
-  elsif @answer == @question
+    return false
+  else @answer1 == @question
     puts "you win"
-    exit
+    return true
   end
 end
 
 make_question
-answer_prompt
-response
+while repeat <11 && response != true
+  repeat+=1
+  response
 
-if response != true
-  make_question
-  answer_prompt
-  response  
 end
+
+#if response != true
+#  make_question
+#  answer_prompt
+#  response
+#end
